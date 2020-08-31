@@ -120,7 +120,7 @@ def lambda_handler(event, context):
 
     sts_connection = boto3.client('sts')
     acct_b = sts_connection.assume_role(
-        RoleArn="arn:aws:iam::056421479688:role/HelloWorldAssumedRole",
+        RoleArn="arn:aws:iam::XXXXXXXXXXXXX:role/HelloWorldAssumedRole",
         RoleSessionName="cross_acct_lambda"
     )
     
