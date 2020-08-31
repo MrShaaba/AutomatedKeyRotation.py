@@ -1,0 +1,12 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<MainAcctno>:role/service-role/helloworld1-role-wtl8gfz5"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
