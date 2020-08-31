@@ -1,0 +1,39 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:us-east-1:<Main-Acctno>:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "sts:AssumeRole",
+            "Resource": "arn:aws:iam::<other Acct no>:role/HelloWorldAssumedRole"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "iam:CreateAccessKey",
+                "iam:UpdateAccessKey",
+                "iam:ListAccessKeys",
+                "iam:DeleteAccessKey",
+                "secretsmanager:PutSecretValue",
+                "secretsmanager:GetSecretValue",
+                "sns:Publish",
+                "logs:CreateLogGroup"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:<MainAcctNo>:log-group:/aws/lambda/helloworld1:*",
+                "arn:aws:logs:us-east-1:<MainAccuntNo>:log-group:/aws/lambda/AutomatedKeyRotation:*",
+                "arn:aws:iam::<MainAcctNo>:user/HCU",
+                "arn:aws:secretsmanager:us-east-1:<MainAcctNo>:secret:HCU-pLDipI",
+                "arn:aws:sns:us-east-1:<MainAcctNo>:SecManagerKeyRotation",
+                "arn:aws:logs:us-east-1:<MainAcctNo>:*",
+                "arn:aws:secretsmanager:us-east-1:<MainAcctNo>:secret:<UserName>-gR5j1W"
+            ]
+        }
+    ]
+}
