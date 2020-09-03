@@ -3,36 +3,57 @@
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "logs:CreateLogGroup",
-            "Resource": "arn:aws:logs:us-east-1:<Main-Acctno>:*"
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-east-1:xxxxxxxxxxxxx:*",
+                "arn:aws:logs:us-east-1:xxxxxxxxxxxxx:log-group:/aws/lambda/helloworld1:*",
+                "arn:aws:logs:us-east-1:xxxxxxxxxxxxxx:log-group:/aws/lambda/AutomatedKeyRotation:*"
+            ]
         },
         {
             "Effect": "Allow",
             "Action": "sts:AssumeRole",
-            "Resource": "arn:aws:iam::<other Acct no>:role/HelloWorldAssumedRole"
+            "Resource": "arn:aws:iam::xxxxxacctBxxxxxx:role/HelloWorldAssumedRole"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": "arn:aws:sns:us-east-1:xxxxxxxxxxx:SecManagerKeyRotation"
         },
         {
             "Effect": "Allow",
             "Action": [
-                "logs:CreateLogStream",
-                "logs:PutLogEvents",
                 "iam:CreateAccessKey",
                 "iam:UpdateAccessKey",
                 "iam:ListAccessKeys",
-                "iam:DeleteAccessKey",
+                "iam:DeleteAccessKey"
+            ],
+            "Resource": "arn:aws:iam::xxxxxxxxxxxxxxx:user/HybridCloudUser"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:DescribeInstances",
+                "ec2:CreateNetworkInterface",
+                "ec2:AttachNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
                 "secretsmanager:PutSecretValue",
-                "secretsmanager:GetSecretValue",
-                "sns:Publish",
-                "logs:CreateLogGroup"
+                "secretsmanager:GetSecretValue"
             ],
             "Resource": [
-                "arn:aws:logs:us-east-1:<MainAcctNo>:log-group:/aws/lambda/helloworld1:*",
-                "arn:aws:logs:us-east-1:<MainAccuntNo>:log-group:/aws/lambda/AutomatedKeyRotation:*",
-                "arn:aws:iam::<MainAcctNo>:user/HCU",
-                "arn:aws:secretsmanager:us-east-1:<MainAcctNo>:secret:HCU-pLDipI",
-                "arn:aws:sns:us-east-1:<MainAcctNo>:SecManagerKeyRotation",
-                "arn:aws:logs:us-east-1:<MainAcctNo>:*",
-                "arn:aws:secretsmanager:us-east-1:<MainAcctNo>:secret:<UserName>-gR5j1W"
+                "arn:aws:secretsmanager:us-east-1:xxxxxxxxxxxx:secret:HybridCloudUser-pLDipI",
+                "arn:aws:secretsmanager:us-east-1:xxxxxxxxxx:secret:hub-cg-sec01-sbx1-ca1-test-gOhtcV"
             ]
         }
     ]
